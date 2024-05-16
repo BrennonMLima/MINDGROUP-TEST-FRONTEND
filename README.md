@@ -15,7 +15,7 @@ Este é um projeto desenvolvido como parte de um processo seletivo. O objetivo �
 * Sistema de login e cadastro de usuários com senhas criptografadas.
 * Propriedades dos produtos: nome, descrição, imagem, valor e quantidade em estoque.
 * Propriedades dos usuários: nome, email e senha.
-* 
+  
 ## Requisitos de Implementação
 * Utilização de bcrypt para criptografar senhas.
 * Armazenamento de imagens localmente ou no banco de dados em formato BLOB.
