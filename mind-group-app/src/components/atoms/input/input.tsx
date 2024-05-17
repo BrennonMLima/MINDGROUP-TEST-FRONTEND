@@ -1,39 +1,57 @@
 import React from 'react';
 
 interface InputProps {
-  type?: 'text' | 'image' | 'number'; // Input type
+  type?: 'text' | 'image' | 'number' | 'password';
   placeholder?: string;
   className?: string;
+  value?: string | number;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input: React.FC<InputProps> = ({ type = 'text', placeholder, className }) => {
+const Input: React.FC<InputProps> = ({ type = 'text', placeholder, className, value, onChange }) => {
   switch (type) {
     case 'text':
       return (
         <input
           type="text"
           placeholder={placeholder}
-          className={'text-input'}
+          className={className || 'text-input'}
+          value={value as string}
+          onChange={onChange}
         />
       );
-    case 'image':
+    case 'password':
       return (
-        <div className={'image-input'}>
-          <input
-            type="file"
-          />
-        </div>
+        <input
+          type="password"
+          placeholder={placeholder}
+          className={className || 'text-input'}
+          value={value as string}
+          onChange={onChange}
+        />
       );
     case 'number':
       return (
         <input
           type="number"
           placeholder={placeholder}
-          className={'number-input'}
+          className={className || 'number-input'}
+          value={value as number}
+          onChange={onChange}
         />
       );
+    case 'image':
+      return (
+        <div className={className}>
+          <input
+            type="file"
+            className={className}
+            onChange={onChange}
+          />
+        </div>
+      );
     default:
-      return <input type="text" placeholder={placeholder} className={className} />;
+      return <input type="text" placeholder={placeholder} className={className} value={value as string} onChange={onChange} />;
   }
 };
 

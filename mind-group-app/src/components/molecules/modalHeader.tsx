@@ -1,10 +1,15 @@
 import React from 'react';
 import Text from '../atoms/text/text';
+import { title } from 'process';
 
-const ModalHeader: React.FC = () => {
+interface ModalTile {
+    title: string;
+  }
+
+  const ModalHeader: React.FC<ModalTile> = ({ title }) => {
     return (
         <div>
-            <Text variant="h1">Entrada de Produtos</Text>
+            <Text variant="h1">{title}</Text>
         </div>
         )
 }

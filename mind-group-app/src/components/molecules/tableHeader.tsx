@@ -19,13 +19,13 @@ const TableHeader = () => {
   return (
     <TableHeadStyled className='table-header'>
       <Tr>
-        <Th width="10%">Imagem</Th>
+        <Th width="8%">Imagem</Th>
         <Th width="20%">Produto</Th>
         <Th width="40%">Descrição</Th>
         <Th width="10%">Preço (R$)</Th>
         <Th width="10%">Quantidade</Th>
-        <Th width="5%">Editar</Th>
-        <Th width="5%">Excluir</Th>
+        <Th width="7%"> Ações</Th>
+        <Th width="5%"> E/S</Th>
       </Tr>
     </TableHeadStyled>
   );

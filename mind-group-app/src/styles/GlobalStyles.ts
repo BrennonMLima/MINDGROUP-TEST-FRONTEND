@@ -7,9 +7,19 @@ margin: 0;
 padding: 0;
 box-sizing: border-box;
 }
-
-html, body, #root {
-height: 10
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+.main{
+    height: 100%;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 *, button, input {
@@ -34,7 +44,7 @@ header{
 }
 
 .config-icon{
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .board{
@@ -45,8 +55,9 @@ header{
     border: 0.07rem solid #e3e3e3;
     box-shadow: 0rem 0.4rem 1.6rem rgba(22, 22, 22, 0.1);
     border-radius: 30px;
-    margin: 20px 150px;
+    min-width: 70%;
     padding: 20px 30px;
+    margin-top: 20px;
 }
 
 .column{
@@ -61,7 +72,7 @@ header{
     align-items: center;
 }
 .button {
-    padding: 16px 20px;
+    padding: 10px 20px;
     border: 0;
     background: var(--secondary);
     border-radius: 0.5rem;
@@ -83,7 +94,8 @@ header{
     background-color: #fff;
     box-shadow: 0px 0px 5px #ccc;
     border-radius: 20px;
-    margin: 20px 150px;
+    min-width: 70%;
+    margin-top: 20px;
     padding-bottom: 20px;
     word-break: break-all;
 }
@@ -103,12 +115,11 @@ header{
     overflow-x: auto;
     box-shadow: 0px 0px 5px #ccc;
     border-radius: 10px;
-    margin: 20px auto;
-    padding: 30px
+    padding: 30px 3px;
 }
 img{
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
 }
 textarea{
@@ -123,7 +134,6 @@ textarea{
     border: 0.07rem solid #e3e3e3;
     box-shadow: 0rem 0.4rem 1.6rem rgba(22, 22, 22, 0.1);
     border-radius: 10px;
-    margin-right: 15px;
     padding: 20px 30px;
 }
 .number-input{
@@ -133,8 +143,23 @@ textarea{
     border-radius: 10px;
     margin-right: 15px;
     padding: 10px 10px;
-    max-width: 70px;
+    max-width: 80px;
 }
+.login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 10%;
+}
+
+.form-login{
+    display: flex;
+    flex-direction: column;
+    gap: 20px
+}
+.link{
+    color: var(--secondary);
 }
 `;
 
