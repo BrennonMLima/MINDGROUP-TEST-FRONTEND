@@ -1,5 +1,5 @@
 import React from 'react';
-import Text from '../atoms/text';
+import Text from '../atoms/text/text';
 import { BsPersonFillGear } from "react-icons/bs";
 
 const Header: React.FC = () => {

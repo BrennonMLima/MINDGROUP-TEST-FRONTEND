@@ -1,16 +1,21 @@
 import React from 'react';
-import Button from '../atoms/button';
-import Text from '../atoms/text';
+import Button from '../atoms/button/button';
+import TextArea from '../atoms/input/textarea';
 
-const SearchBoard: React.FC = () => {
+interface SearchBoardProps {
+  onToggleModal: () => void; // Função para abrir/fechar o modal
+}
+
+const SearchBoard: React.FC<SearchBoardProps> = ({ onToggleModal }) => {
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    // Handle the text change here
+    console.log(event.target.value);
+  };
+
   return (
     <div className="board">
-      <div>
-        <Text variant="h1">Pesquisar</Text>
-      </div>
-      <div className="button">
-        <Button>+ Novo</Button>
-      </div>
+      <TextArea onChange={handleChange} />
+      <Button onClick={onToggleModal}>+ Novo</Button> {/* Chama a função para abrir/fechar o modal ao clicar no botão */}
     </div>
   );
 };

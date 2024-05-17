@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import styled from 'styled-components';
 
 
 export default createGlobalStyle`
@@ -20,30 +19,17 @@ font-family: 'Roboto', sans-serif;
 }
 
 :root {
---white: #fff;
 --secondary: #011936;
 --tertiary: #3772FF;
-
---gray: #8a8c90;
---chat-input: rgb(64,68,75);
---symbol: #74777a;
-
---notification: #f84a4b;
---discord: #6e86d6;
---mention-detail: #f9a839;
---mention-message: #413f3f;
-
---link: #5d80d6;
-
---rocketseat: #6633cc;
 }
 
 header{
     display: flex;
+    position: sticky;
     align-items: center;
     justify-content: space-between;
     background-color: var(--secondary);
-    color: var(--white);
+    color: #fff;
     padding: 20px 35px; 
 }
 
@@ -59,13 +45,25 @@ header{
     border: 0.07rem solid #e3e3e3;
     box-shadow: 0rem 0.4rem 1.6rem rgba(22, 22, 22, 0.1);
     border-radius: 30px;
-    margin: 15px 16px;
-    padding: 30px 30px;
+    margin: 20px 150px;
+    padding: 20px 30px;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+}
+.name-input{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    gap: 20px;
+    align-items: center;
 }
 .button {
-    padding: 8px 10px;
+    padding: 16px 20px;
     border: 0;
-    background: var(--tertiary);
+    background: var(--secondary);
     border-radius: 0.5rem;
     color: white;
     display: flex;
@@ -79,6 +77,63 @@ header{
     align-items: center;
     justify-content: space-between;
     gap: 6px;
+}
+
+.table{
+    background-color: #fff;
+    box-shadow: 0px 0px 5px #ccc;
+    border-radius: 20px;
+    margin: 20px 150px;
+    padding-bottom: 20px;
+    word-break: break-all;
+}
+.product-item{
+    background-color: #fff;
+    box-shadow: 0px 0px 5px #ccc;
+    border-radius: 0px;
+    margin: 10px 0px;
+    padding: 30px 30px;
+    word-break: break-all;
+}
+
+.table-header{
+    width: 100%;
+    background-color: var(--secondary);
+    color: #fff;
+    overflow-x: auto;
+    box-shadow: 0px 0px 5px #ccc;
+    border-radius: 10px;
+    margin: 20px auto;
+    padding: 30px
+}
+img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+textarea{
+    display:flex;
+    resize:none;
+    height: 50px;
+    align-items: center;
+    font-size: 40px;
+}
+.text-input{
+    background: var(--white);
+    border: 0.07rem solid #e3e3e3;
+    box-shadow: 0rem 0.4rem 1.6rem rgba(22, 22, 22, 0.1);
+    border-radius: 10px;
+    margin-right: 15px;
+    padding: 20px 30px;
+}
+.number-input{
+    background: var(--white);
+    border: 0.07rem solid #e3e3e3;
+    box-shadow: 0rem 0.4rem 1.6rem rgba(22, 22, 22, 0.1);
+    border-radius: 10px;
+    margin-right: 15px;
+    padding: 10px 10px;
+    max-width: 70px;
 }
 }
 `;
