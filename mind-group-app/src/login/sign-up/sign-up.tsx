@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import Input from '../../components/atoms/input/input';
 import Button from '../../components/atoms/button/button';
 import Text from '../../components/atoms/text/text';
+import { registerUser } from '../../service/users';
 const SignUp: React.FC = () => {
     const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
     const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -13,16 +14,16 @@ const SignUp: React.FC = () => {
     };
 
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setPassword(e.target.value);
+        setEmail(e.target.value);
     };
 
-    const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setConfirmPassword(e.target.value);
+    const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setEmail(e.target.value);
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Lógica para criar uma nova conta
+        const {data, status} = await registerUser(username, email, confirmPassword)
     };
 
     return (
@@ -31,7 +32,7 @@ const SignUp: React.FC = () => {
             <Text variant="p">Olá, bem-vindo(a)!</Text>
             <form onSubmit={handleSubmit}>
                 <div className='form-login'>
-                    <Input type="text" placeholder="E-mail" onChange={handleUsernameChange} className='text-input' />
+                    <Input type="text" placeholder="E-mail" onChange={handleEmailChange} className='text-input' />
                     <Input type="text" placeholder="Nome" onChange={handleUsernameChange} className='text-input' />
                     <Input type="password" placeholder="Senha" onChange={handlePasswordChange} />
                     <Button type="submit" className='margin-top'>Cadastrar </Button>
