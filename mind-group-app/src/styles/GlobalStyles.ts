@@ -45,7 +45,14 @@ header{
 
 .config-icon{
     font-size: 20px;
+    cursor: pointer;
 }
+
+.action-icon{
+    font-size: 18px;
+    cursor: pointer;
+}
+
 
 .board{
     display: flex;

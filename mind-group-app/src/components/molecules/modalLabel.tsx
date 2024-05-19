@@ -1,30 +1,23 @@
+// modalLabel.tsx
 import React from 'react';
 import Input from '../atoms/input/input';
 import Text from '../atoms/text/text';
 
-interface InputTypes {
+interface ModalLabelProps {
   title: string;
   type?: "number" | "text" | "image";
   placeholder?: string;
-  className?: string;
   value?: string | number;
-  onChange?: (value: string) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const ModalLabel: React.FC<InputTypes> = ({ title, type, placeholder, className,value,onChange }) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value;
-    if (onChange) {
-      onChange(newValue);
-    }
-  };
+const ModalLabel: React.FC<ModalLabelProps> = ({ title, type, placeholder, value, onChange }) => {
   return (
     <div>
       <Text variant="p">{title}</Text>
-      <Input type={type} placeholder={placeholder} value={value} onChange={handleChange}/>
+      <Input type={type} placeholder={placeholder} value={value as string} onChange={onChange}/>
     </div>
   );
 };
 
 export default ModalLabel;
-

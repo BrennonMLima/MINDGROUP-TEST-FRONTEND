@@ -4,6 +4,7 @@ import Input from '../../components/atoms/input/input';
 import Button from '../../components/atoms/button/button';
 import Text from '../../components/atoms/text/text';
 import { registerUser } from '../../service/users';
+
 const SignUp: React.FC = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');

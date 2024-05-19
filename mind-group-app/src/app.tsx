@@ -1,23 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import GlobalStyles from './styles/GlobalStyles';
 import AppRouter from './router/router';
-import api from './service/api';
 import { login } from './service/users';
-import { setCookie } from 'typescript-cookie';
+import { createProduct } from './service/products';
+import { getCookie, setCookie } from 'typescript-cookie';
 
 const App: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // const handleLogin = (username: string, password: string) => {
-  //   if (username === 'admin' && password === 'admin') {
-  //     setIsLoggedIn(true);
-  //   }
-  // };
+  useEffect(()=>{
+    const token = getCookie("auth-token");
+    if(token) setIsLoggedIn(true)
+}, [])
+
 
   const handleLogin = async (email: string, password: string)=> {
     const {data: {token}, status} = await login(email, password);
+    if(status === 200){
+      setCookie("auth-token", token)
+      setIsLoggedIn(true)
+    }
+  }
+
+  const handleSave = async (name: string,
+    descripton: string,
+    value: string,
+    amount: number,
+    imageUrl: string,)=> {
+    const {data: {token}, status} = await createProduct(name, descripton,value,amount,imageUrl);
     if(status === 200){
       setCookie("auth-token", token)
       setIsLoggedIn(true)
@@ -53,6 +65,7 @@ const App: React.FC = () => {
         isModalOpen={isModalOpen}
         isEditModalOpen={isEditModalOpen} 
         handleLogin={handleLogin}
+        handleSave={handleSave}
         handleToggleModal={handleToggleModal}
         handleCloseModal={handleCloseModal}
         handleToggleEditModal={handleToggleEditModal} 

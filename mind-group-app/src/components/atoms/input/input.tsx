@@ -4,7 +4,7 @@ interface InputProps {
   type?: 'text' | 'image' | 'number' | 'password';
   placeholder?: string;
   className?: string;
-  value?: string | number;
+  value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -33,10 +33,10 @@ const Input: React.FC<InputProps> = ({ type = 'text', placeholder, className, va
     case 'number':
       return (
         <input
-          type="number"
+          type="text"
           placeholder={placeholder}
           className={className || 'number-input'}
-          value={value as number}
+          value={value as string}
           onChange={onChange}
         />
       );

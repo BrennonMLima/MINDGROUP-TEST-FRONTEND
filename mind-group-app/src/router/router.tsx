@@ -11,9 +11,9 @@ import SignUp from '../login/sign-up/sign-up';
 interface Product {
     name: string;
     description: string;
-    price: number;
+    price: string;
     amount: number;
-    id: number;
+    id: string;
     image?: string;
 }
 
@@ -22,6 +22,11 @@ interface RouterProps {
     isModalOpen: boolean;
     isEditModalOpen: boolean;
     handleLogin: (username: string, password: string) => void;
+    handleSave: (name: string,
+        descripton: string,
+        value: string,
+        amount: number,
+        image: string,) => void;
     handleToggleModal: () => void;
     handleCloseModal: () => void;
     handleToggleEditModal: (product?: Product) => void;
@@ -35,6 +40,7 @@ const AppRouter: React.FC<RouterProps> = ({
     isModalOpen,
     isEditModalOpen,
     handleLogin,
+    handleSave,
     handleToggleModal,
     handleCloseModal,
     handleToggleEditModal,
@@ -56,7 +62,7 @@ const AppRouter: React.FC<RouterProps> = ({
                     {isLoggedIn ? (
                         <>
                             <SearchBoard onToggleModal={handleToggleModal} />
-                            {isModalOpen && <ModalAdd onClose={handleCloseModal} />}
+                            {isModalOpen && <ModalAdd onSave={handleSave}/>}
                             {isEditModalOpen && <ModalEdit onClose={handleCloseEditModal} editedProduct={editedProduct} />} 
                             <TableGrid onToggleEditModal={toggleEditModal} /> 
                         </>
