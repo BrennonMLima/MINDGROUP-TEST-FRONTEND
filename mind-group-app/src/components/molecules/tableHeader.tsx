@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Th from '../atoms/th';
-import Tr from '../atoms/tr';
+import Th from '../atoms/table/th';
+import Tr from '../atoms/table/tr';
 
 const TableHeadStyled = styled.div`
  
@@ -19,7 +19,7 @@ const TableHeader = () => {
   return (
     <TableHeadStyled className='table-header'>
       <Tr>
-        <Th width="8%">Imagem</Th>
+        {/*<Th width="8%">Imagem</Th>*/}
         <Th width="20%">Produto</Th>
         <Th width="40%">Descrição</Th>
         <Th width="10%">Preço (R$)</Th>

@@ -17,10 +17,14 @@ const App: React.FC = () => {
 
 
   const handleLogin = async (email: string, password: string)=> {
-    const {data: {token}, status} = await login(email, password);
-    if(status === 200){
-      setCookie("auth-token", token)
-      setIsLoggedIn(true)
+    try{
+      const {data: {token}, status} = await login(email, password);
+      if(status === 200){
+        setCookie("auth-token", token)
+        setIsLoggedIn(true)
+      }
+    }catch{
+      alert('Dados incorretos! Tente Novamente.')
     }
   }
 
@@ -56,7 +60,7 @@ const App: React.FC = () => {
   setIsModalOpen(isOpen);
   };
 
-
+console.log('render')
 
   return (
     <div className="App">

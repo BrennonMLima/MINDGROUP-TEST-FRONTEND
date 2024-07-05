@@ -1,18 +1,19 @@
 interface TextAreaProps {
-    onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-    className?: string;
-  }
-  
-  const TextArea: React.FC<TextAreaProps> = ({onChange, className }) => {
-    return (
-      <textarea
-        name="Pesquisar"
-        id=""
-        placeholder="Pesquisar"
-        onChange={onChange}
-        className={className}
-      />
-    );
-  };
-  
+  className?: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+}
+
+const TextArea: React.FC<TextAreaProps> = ({ value, className, onChange }) => {
+  return (
+    <textarea
+      name="Pesquisar"
+      placeholder="Pesquisar"
+      value={value}
+      className={className}
+      onChange={onChange}
+    />
+  );
+};
+
 export default TextArea;

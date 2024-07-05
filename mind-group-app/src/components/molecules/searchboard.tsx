@@ -4,16 +4,19 @@ import TextArea from '../atoms/input/textarea';
 
 interface SearchBoardProps {
   onToggleModal: () => void;
+  search: string;
+  setSearch: (search: string) => void;
 }
 
-const SearchBoard: React.FC<SearchBoardProps> = ({ onToggleModal }) => {
-  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+const SearchBoard: React.FC<SearchBoardProps> = ({ onToggleModal, search, setSearch }) => {
+  const handleSearchChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setSearch(e.target.value);
   };
 
   return (
     <div className="board">
-      <TextArea onChange={handleChange} />
-      <Button onClick={onToggleModal}>+ Novo</Button> 
+      <TextArea value={search} onChange={handleSearchChange} />
+      <Button onClick={onToggleModal}>+ Novo</Button>
     </div>
   );
 };

@@ -1,10 +1,9 @@
 import React from 'react';
-import Td from '../atoms/td';
-import Tr from '../atoms/tr';
+import Td from '../atoms/table/td';
+import Tr from '../atoms/table/tr';
 import { FaEdit, FaRegTrashAlt } from "react-icons/fa";
 import { IoMdAdd, IoMdRemove } from "react-icons/io";
 import { deleteProduct, updateAmount } from '../../service/products';
-
 
 interface Product {
   name: string;
@@ -18,49 +17,50 @@ interface Product {
 interface TableRowProps {
   product: Product;
   onToggleEditModal: (product: Product) => void;
+  onUpdate: () => void;
 }
 
-
-const TableRow: React.FC<TableRowProps> = ({ product: Product, onToggleEditModal }) => {
+const TableRow: React.FC<TableRowProps> = ({ product, onToggleEditModal, onUpdate }) => {
   const handleDeleteProduct = async () => {
-    await deleteProduct(Product.id)
+    await deleteProduct(product.id);
+    onUpdate();
   }
 
   const handleAddQuantity = async () => {
-    const newAmount: number = Number(Product.amount) + 1;
-    await updateAmount(Product.id, newAmount)
+    const newAmount: number = Number(product.amount) + 1;
+    await updateAmount(product.id, newAmount);
+    onUpdate();
   }
 
   const handleRemoveQuantity = async () => {
-    if(Product.amount > 0){
-      const newAmount: number =  Number(Product.amount) -1;
-      await updateAmount(Product.id, newAmount)
+    if (product.amount > 0) {
+      const newAmount: number = Number(product.amount) - 1;
+      await updateAmount(product.id, newAmount);
+      onUpdate();
     }
   }
 
   return (
-    <Tr key={Product.id}>
-      {Product.imageUrl && (
+    <Tr key={product.id}>
+      {/*{product.imageUrl && (
         <Td width="10%">
-          <img src={Product.imageUrl} alt={Product.name} />
+          <img src={product.imageUrl} alt={product.name} />
         </Td>
-      )}
-      <Td width="20%">{Product.name}</Td>
-      <Td width="40%">{Product.description}</Td>
-      <Td width="10%" alignCenter={true}>{Product.price}</Td>
-      <Td width="10%" alignCenter={true}>{Product.amount}</Td>
+      )}*/}
+      <Td width="20%">{product.name}</Td>
+      <Td width="40%">{product.description}</Td>
+      <Td width="10%" alignCenter={true}>{product.price}</Td>
+      <Td width="10%" alignCenter={true}>{product.amount}</Td>
       <Td width="7%" alignCenter={true}>
-      <FaEdit className='action-icon' onClick={() => onToggleEditModal(Product)} />
-        <FaRegTrashAlt className='action-icon' onClick={handleDeleteProduct}/>
+        <FaEdit className='action-icon' onClick={() => onToggleEditModal(product)} />
+        <FaRegTrashAlt className='action-icon' onClick={handleDeleteProduct} />
       </Td>
-      <Td width="5%" alignCenter={true}
-      ><IoMdAdd className='config-icon' onClick={handleAddQuantity}/>
-        <IoMdRemove className='config-icon' onClick={handleRemoveQuantity}/>
+      <Td width="5%" alignCenter={true}>
+        <IoMdAdd className='config-icon' onClick={handleAddQuantity} />
+        <IoMdRemove className='config-icon' onClick={handleRemoveQuantity} />
       </Td>
-
     </Tr>
   );
 };
 
 export default TableRow;
-

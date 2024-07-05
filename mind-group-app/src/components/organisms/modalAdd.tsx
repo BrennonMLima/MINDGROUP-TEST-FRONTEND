@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import ModalLabel from "../molecules/modalLabel";
 import ModalHeader from "../molecules/modalHeader";
 import Button from "../atoms/button/button";
-import { createProduct, getAllProducts } from "../../service/products";
+import { createProduct} from "../../service/products";
 
 interface ModalAddProps {
-  onSave: (name: string,
+    onSave: (name: string,
     descripton: string,
     value: string,
     amount: number,
@@ -43,6 +43,7 @@ const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     await createProduct(name,description,price,amount,image);
+    onSave(name,description,price,amount,image);
     }
 
   return (
@@ -52,8 +53,8 @@ const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       <div className="name-input">
         <ModalLabel title="Produto" type="text" placeholder="Produto" value={name} onChange={handleNameChange} />
         <ModalLabel title="Descrição" type="text" placeholder="Descrição" value={description} onChange={handleDescriptionChange} />
-        <ModalLabel title="Preço" type="text" placeholder="" value={price} onChange={handleValueChange} />
-        <ModalLabel title="Quantidade" type="text" placeholder="" value={amount} onChange={handleAmountChange} />
+        <ModalLabel title="Preço" type="number" placeholder="" value={price} onChange={handleValueChange} />
+        <ModalLabel title="Quantidade" type="number" placeholder="" value={amount} onChange={handleAmountChange} />
         <ModalLabel title="Imagem" type="text" placeholder="" value={image} onChange={handleImageChange} />
         <Button type='submit'>Salvar</Button>
       </div>

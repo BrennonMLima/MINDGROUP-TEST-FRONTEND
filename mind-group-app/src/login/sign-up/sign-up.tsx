@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import Input from '../../components/atoms/input/input';
 import Button from '../../components/atoms/button/button';
 import Text from '../../components/atoms/text/text';
 import { registerUser } from '../../service/users';
 
 const SignUp: React.FC = () => {
-    const [username, setUsername] = useState('');
+    const [username, setname] = useState('');
     const [email, setEmail] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
-    const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setUsername(e.target.value);
+    const handlenameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setname(e.target.value);
     };
 
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setEmail(e.target.value);
+        setPassword(e.target.value);
     };
 
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,7 +25,19 @@ const SignUp: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const {data, status} = await registerUser(username, email, confirmPassword)
+        if (!username || !email || !password) {
+            alert('Por favor, preencha todos os campos.');
+            return;
+        }
+        try{
+
+            const {data, status} = await registerUser(email, username, password)
+            if (status === 201) {
+                navigate('/login');
+            }
+        }catch(err){
+            alert('Ocorreu um erro! tente novamente.')
+        }
     };
 
     return (
@@ -34,7 +47,7 @@ const SignUp: React.FC = () => {
             <form onSubmit={handleSubmit}>
                 <div className='form-login'>
                     <Input type="text" placeholder="E-mail" onChange={handleEmailChange} className='text-input' />
-                    <Input type="text" placeholder="Nome" onChange={handleUsernameChange} className='text-input' />
+                    <Input type="text" placeholder="Nome" onChange={handlenameChange} className='text-input' />
                     <Input type="password" placeholder="Senha" onChange={handlePasswordChange} />
                     <Button type="submit" className='margin-top'>Cadastrar </Button>
                     <p>Já tem uma conta? <Link to="/login" className='link'>Entre!</Link></p>

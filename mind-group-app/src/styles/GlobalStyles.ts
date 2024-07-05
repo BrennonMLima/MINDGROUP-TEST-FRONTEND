@@ -43,6 +43,18 @@ header{
     padding: 20px 35px; 
 }
 
+footer{
+    display: flex;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    justify-content: center;
+    background-color: var(--secondary);
+    color: #fff;
+    gap: 10px;
+    padding: 10px 25px; 
+}
+
 .config-icon{
     font-size: 20px;
     cursor: pointer;
@@ -141,7 +153,7 @@ textarea{
     border: 0.07rem solid #e3e3e3;
     box-shadow: 0rem 0.4rem 1.6rem rgba(22, 22, 22, 0.1);
     border-radius: 10px;
-    padding: 20px 30px;
+    padding: 20px 15px;
 }
 .number-input{
     background: var(--white);

@@ -34,20 +34,24 @@ const ModalEdit: React.FC<ModalEditProps> = ({ editedProduct, onClose, onSave })
     setEditedDescription(e.target.value);
   };
 
-const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  setEditedPrice(e.target.value);
+  const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEditedPrice(e.target.value);
   };
 
-const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  setEditedImage(e.target.value);
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEditedImage(e.target.value);
   };
-const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  const amount = Number(e.target.value)
-  setEditedAmount(amount);
+
+  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const amount = Number(e.target.value);
+    setEditedAmount(amount);
   };
 
   const handleSave = async() => {
-    if(editedProduct) await updateProduct(editedProduct.id, editedName,editedDescription,editedPrice,editedAmount,editedImage);
+    if (editedProduct) {
+      await updateProduct(editedProduct.id, editedName, editedDescription, editedPrice, editedAmount, editedImage);
+      if (onSave) onSave(editedProduct);
+    }
   };
 
   if (!editedProduct) return null;
@@ -60,7 +64,7 @@ const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         <ModalLabel title="Descrição" type="text" placeholder="Descrição" value={editedDescription} onChange={handleDescriptionChange}/>
         <ModalLabel title="Preço" type="number" placeholder="" value={editedPrice}  onChange={handleValueChange}/>
         <ModalLabel title="Quantidade" type="number" placeholder="" value={editedAmount} onChange={handleAmountChange} />
-        <ModalLabel title="Imagem" type="image" placeholder="" value={editedImage} onChange={handleImageChange}/>
+        <ModalLabel title="Imagem" type="text" placeholder="" value={editedImage} onChange={handleImageChange}/>
         <Button onClick={handleSave}>Salvar</Button>
       </div>
     </div>
